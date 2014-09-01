@@ -240,7 +240,7 @@ func (tmpl *TemplateCopy) JS(name string, binding interface{}) (*bytes.Buffer, e
 	return tmpl.RenderFormat("js", name, binding)
 }
 
-// Write HTML file to ResponseWriter
+// Write JS file to ResponseWriter
 func (tmpl *TemplateCopy) WriteJS(rw http.ResponseWriter, status int, name string, binding interface{}) {
 	html, err := tmpl.RenderFormat("js", name, binding)
 

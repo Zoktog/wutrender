@@ -133,7 +133,7 @@ or even if you want to render a complex JSON file:
 
 ### Development and Production
 
-`wutrender.Renderer` uses [wutenv](8protons/wutenv) package to detect current application environment (by GO_ENV or GO_FLAVOR):
+`wutrender.Renderer` uses [wutenv](https://github.com/8protons/wutenv) package to detect current application environment (by GO_ENV or GO_FLAVOR):
 
 ~~~ go
   // Recompile template
