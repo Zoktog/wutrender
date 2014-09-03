@@ -209,16 +209,7 @@ func (r *Renderer) Copy() *TemplateCopy {
 
 // Render HTML with layout support
 func (tmpl *TemplateCopy) HTML(name string, binding interface{}) (*bytes.Buffer, error) {
-
-	fullName := name
-
-	// Set yield function (layout)
-	if tmpl.layout != "" {
-		addYield(tmpl.t, fullName+".html", binding)
-		fullName = tmpl.layout
-	}
-
-	return tmpl.RenderFormat("html", fullName, binding)
+	return tmpl.RenderFormat("html", name, binding)
 }
 
 // Write HTML to ResponseWriter
@@ -261,6 +252,12 @@ func (tmpl *TemplateCopy) RenderFormat(format string, name string, binding inter
 	addPartial(tmpl.t)
 
 	fullName := name + "." + format
+
+	// Set yield function (layout)
+	if format == "html" && tmpl.layout != "" {
+		addYield(tmpl.t, fullName, binding)
+		fullName = tmpl.layout + ".html"
+	}
 
 	return executeTemplate(tmpl.t, fullName, binding)
 }
